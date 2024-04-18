@@ -1,0 +1,8 @@
+.vscode
+*/lib
+*/out
+*/bin
+*/.vscode
+*/.idea
+*/*.class
+*/*.jar
