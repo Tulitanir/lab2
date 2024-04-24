@@ -1,24 +1,15 @@
 version: '3.8'
 services:
   client:
-    build: ./demo2
+    build: ./client
     container_name: client
-    environment:
-      - INTERVAL=3000
-      - SLEEP=200
-      - REPEATS=150
     depends_on:
-      server:
-        condition: service_healthy
+      - server
     networks: 
       - docker-network
   server:
-    build: ./demo1
+    build: ./server
     container_name: server
-    healthcheck:
-      test: ["CMD-SHELL", "exit 0"]
-      interval: 2s
-      retries: 5
     networks: 
       - docker-network
 networks:
