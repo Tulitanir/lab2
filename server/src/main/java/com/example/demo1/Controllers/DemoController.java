@@ -52,16 +52,12 @@ public class DemoController {
 
     @ExceptionHandler(InternalServerErrorException.class)
     public ResponseEntity<String> handle(InternalServerErrorException exception) {
-        int randomNumber = random.nextInt(2);
-        HttpStatus httpStatus;
-        switch (randomNumber) {
-            case 0:
-                httpStatus = HttpStatus.SERVICE_UNAVAILABLE;
-            case 1:
-                httpStatus = HttpStatus.BAD_GATEWAY;
-            default: 
-                httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-        }
+        int randomNumber = random.nextInt(3);
+        HttpStatus httpStatus = switch (randomNumber) {
+            case 0 -> HttpStatus.SERVICE_UNAVAILABLE;
+            case 1 -> HttpStatus.BAD_GATEWAY;
+            default -> HttpStatus.INTERNAL_SERVER_ERROR;
+        };
         return ResponseEntity.status(httpStatus).body(httpStatus.getReasonPhrase());
     }
 }

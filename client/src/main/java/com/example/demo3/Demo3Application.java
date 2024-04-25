@@ -15,13 +15,15 @@ public class Demo3Application {
 		var url = "http://server:8080/api";
 		var httpClient = new HttpClient(3000, 3, 3);
 		for (int i = 0; i < 200; i++) {
-			int option = random.nextInt(2);
+			int option = random.nextInt(3);
 			try {
 				switch (option) {
 					case 0:
 						System.out.println(httpClient.post(url));
+						break;
 					case 1:
 						System.out.println(httpClient.put(url));
+						break;
 					default:
 						System.out.println(httpClient.get(url));
 				}
